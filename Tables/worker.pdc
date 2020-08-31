@@ -1,0 +1,61 @@
+-- Create table
+create table WORKER
+(
+  workerid     NUMBER not null,
+  workername   VARCHAR2(32) not null,
+  workersalary NUMBER not null,
+  address      VARCHAR2(32) not null,
+  phonenr      NUMBER not null,
+  gender       VARCHAR2(32) not null,
+  age          NUMBER not null,
+  jobid        NUMBER not null,
+  teamid       NUMBER not null
+)
+tablespace USERS
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+-- Create/Recreate indexes 
+create index IDX_WORKER_TEAMID on WORKER (TEAMID)
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+-- Create/Recreate primary, unique and foreign key constraints 
+alter table WORKER
+  add primary key (WORKERID, JOBID)
+  using index 
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+alter table WORKER
+  add foreign key (TEAMID)
+  references TEAM (TEAMID);
+-- Grant/Revoke object privileges 
+grant select on WORKER to AVIOR;
+grant select on WORKER to BENL;
+grant select on WORKER to NBOUBLI;
+grant select, insert, update, delete, references, alter, index on WORKER to SBENEBRH;
+grant select on WORKER to TABERGEL;

@@ -1,0 +1,44 @@
+-- Create table
+create table ASKFOR
+(
+  teamid        NUMBER not null,
+  transactionid NUMBER not null
+)
+tablespace USERS
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+-- Create/Recreate primary, unique and foreign key constraints 
+alter table ASKFOR
+  add primary key (TEAMID, TRANSACTIONID)
+  using index 
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+alter table ASKFOR
+  add foreign key (TEAMID)
+  references TEAM (TEAMID);
+alter table ASKFOR
+  add foreign key (TRANSACTIONID)
+  references MONEYTRANSITION (TRANSACTIONID);
+-- Grant/Revoke object privileges 
+grant select on ASKFOR to AVIOR;
+grant select on ASKFOR to BENL;
+grant select on ASKFOR to NBOUBLI;
+grant select on ASKFOR to SBENEBRH;
+grant select on ASKFOR to TABERGEL;

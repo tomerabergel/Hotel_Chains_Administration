@@ -1,0 +1,54 @@
+-- Create table
+create table TEAM
+(
+  teamname    VARCHAR2(32) not null,
+  teamid      NUMBER not null,
+  description VARCHAR2(32) not null,
+  bank        NUMBER not null,
+  hotelid     NUMBER not null
+)
+tablespace USERS
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+-- Create/Recreate indexes 
+create index IDX_TEAM_HOTELID on TEAM (HOTELID)
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+-- Create/Recreate primary, unique and foreign key constraints 
+alter table TEAM
+  add primary key (TEAMID)
+  using index 
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+-- Grant/Revoke object privileges 
+grant select on TEAM to AVIOR;
+grant select on TEAM to BENL;
+grant select on TEAM to NBOUBLI;
+grant select on TEAM to SBENEBRH;
+grant select on TEAM to TABERGEL;

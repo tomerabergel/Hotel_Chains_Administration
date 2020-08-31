@@ -1,0 +1,52 @@
+-- Create table
+create table JOB
+(
+  jobid   NUMBER not null,
+  jobname VARCHAR2(32) not null
+)
+tablespace USERS
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+-- Create/Recreate primary, unique and foreign key constraints 
+alter table JOB
+  add primary key (JOBID)
+  using index 
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+alter table JOB
+  add unique (JOBNAME)
+  using index 
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+-- Grant/Revoke object privileges 
+grant select on JOB to AVIOR;
+grant select on JOB to BENL;
+grant select on JOB to NBOUBLI;
+grant select on JOB to SBENEBRH;
+grant select on JOB to TABERGEL;

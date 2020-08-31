@@ -1,0 +1,39 @@
+-- Create table
+create table MONEYTRANSITION
+(
+  amount        NUMBER not null,
+  trans_date    DATE not null,
+  transactionid NUMBER not null
+)
+tablespace USERS
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+-- Create/Recreate primary, unique and foreign key constraints 
+alter table MONEYTRANSITION
+  add primary key (TRANSACTIONID)
+  using index 
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+-- Grant/Revoke object privileges 
+grant select on MONEYTRANSITION to AVIOR;
+grant select on MONEYTRANSITION to BENL;
+grant select on MONEYTRANSITION to NBOUBLI;
+grant select on MONEYTRANSITION to SBENEBRH;
+grant select on MONEYTRANSITION to TABERGEL;
